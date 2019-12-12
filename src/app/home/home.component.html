@@ -8,14 +8,14 @@
         <br>
 
         <div class="form-group">
-            <label for="inputStudent">Student List</label>
+            <label for="inputStudent">Student List:</label>
             <select class="form-control" id="inputStudent" required [(ngModel)]="home.Student" name="inputStudent" #inputStudent="ngModel">
               <option *ngFor="let student of drpStudent" [value]="student">{{student}}</option>
             </select>
           </div>
         
         <div class="form-group">
-        <label for="inputCourse">Course Name</label>
+        <label for="inputCourse">Course Name:</label>
         <input [(ngModel)]="home.Course" type="text" class="form-control" id="course" name="inputCourse" #inputCourse="ngModel"
         required minlength="10" maxlength="50"/>
       <div *ngIf="inputCourse.invalid && (inputCourse.dirty || inputCourse.touched)"
@@ -30,7 +30,7 @@
       </div>
 
       <div class="form-group">
-        <label for="inputScore">Score</label>
+        <label for="inputScore">Score:</label>
         <input [(ngModel)]="home.Score" type="text" class="form-control" id="score" name="inputScore" #inputScore="ngModel"
         required pattern="[0-9]*" [customMin]="0" [customMax]="100"/>
       <div *ngIf="inputScore.invalid && (inputScore.dirty || inputScore.touched)"
@@ -68,6 +68,7 @@
 
       <div [hidden]="!submitted">
         <div class="container"> 
+        <br>
         <div class="card" style="width: 60%">
             <div class="card-header">Student Submit Printout</div>    
             <div class="card-body">
