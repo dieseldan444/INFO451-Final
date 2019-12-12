@@ -1,0 +1,74 @@
+<div [hidden]="submitted">
+<form #homeForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="container" *ngIf="home">
+        
+        <div class="form-group">
+            <label for="inputStudent">Student List</label>
+            <select class="form-control" id="inputStudent" required [(ngModel)]="home.Student" name="inputStudent" #inputStudent="ngModel">
+              <option *ngFor="let student of drpStudent" [value]="student">{{student}}</option>
+            </select>
+          </div>
+        
+        <div class="form-group">
+        <label for="inputCourse">Course Name</label>
+        <input [(ngModel)]="home.Course" type="text" class="form-control" id="course" name="inputCourse" #inputCourse="ngModel"
+        required minlength="10" maxlength="50"/>
+      <div *ngIf="inputCourse.invalid && (inputCourse.dirty || inputCourse.touched)"
+          class="alert alert-danger">
+        <div *ngIf="inputCourse.errors['required']">
+          Course is required.
+        </div>
+        <div *ngIf="inputCourse.errors['minlength']">
+          Course must be at least 10 characters.
+        </div>
+      </div>      
+      </div>
+
+      <div class="form-group">
+        <label for="inputScore">Score</label>
+        <input [(ngModel)]="home.Score" type="text" class="form-control" id="score" name="inputScore" #inputScore="ngModel"
+        required pattern="[0-9]*" [customMin]="0" [customMax]="100"/>
+      <div *ngIf="inputScore.invalid && (inputScore.dirty || inputScore.touched)"
+          class="alert alert-danger">
+        <div *ngIf="inputScore.errors['pattern']">
+            Score must be numeric only.
+        </div>
+        <div *ngIf="inputScore.errors['required']">
+          Score is required.
+        </div>
+        <div *ngIf="inputScore.errors['customMin']">
+            Score cannot be less than {{minNum}}.
+          </div>
+          <div *ngIf="inputScore.errors['customMax']">
+            Score cannot be greater than {{maxNum}}.
+          </div>
+      </div>      
+      </div>
+
+      <div>
+      <label>Grade: Calculated grade as per score</label>
+      </div> 
+
+  
+      <div class="container row">
+        <input type="submit" value="Submit" class="btn btn-primary" (click)=onSubmit(); [disabled]="!homeForm.form.valid"/> &nbsp;
+        <input type="button" value="Clear" class="btn btn-secondary" (click)="clear(); homeForm.reset()"/> &nbsp;
+      </div>
+    </div>
+  
+  </form>
+</div>
+    
+      <div [hidden]="!submitted">
+        <div class="container"> 
+        <div class="card" style="width: 50%">
+            <div class="card-header">Student Submit Printout</div>    
+            <div class="card-body">
+              <p class="card-text">Student: {{home.Student}}, takes the course: {{home.Course}}, and has the grade: {{home.Grade}}</p>
+              <p class="card-text">Course name in uppercase: {{home.Course | uppercase}}</p>
+              <p class="card-text">Course name in lowercase: {{home.Course | lowercase}}</p>
+            </div>
+          </div>
+    </div>
+
+    <!--Help from https://grokonez.com/frontend/angular/angular-6/angular-6-template-driven-form-ngmodel-for-two-way-data-binding#Project_Setup-->
