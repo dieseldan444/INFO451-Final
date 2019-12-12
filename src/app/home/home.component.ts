@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeModel } from './../shared/home-model';
-import { ActivatedRoute,Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +13,7 @@ export class HomeComponent implements OnInit {
   minNum = 0;
   maxNum = 100;
 
-  constructor(private router: Router, private location: Location) { }
+  constructor() { }
 
   ngOnInit() {
     this.home=new HomeModel;
@@ -25,6 +23,21 @@ export class HomeComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    if(this.home.Score >= 91){
+      this.home.Grade = 'A';
+    }
+   else if(this.home.Score >= 81){
+      this.home.Grade = 'B';
+    }
+   else if(this.home.Score >= 71){
+      this.home.Grade = 'C';
+    }
+   else if(this.home.Score >= 61){
+      this.home.Grade = 'D';
+    }
+   else{
+    this.home.Grade = 'F';
+    }
   }
   
   clear() {

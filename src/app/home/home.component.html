@@ -2,6 +2,11 @@
 <form #homeForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="container" *ngIf="home">
         
+        <br>
+        <h4>Grade Calculator</h4>
+        <hr width="20%">
+        <br>
+
         <div class="form-group">
             <label for="inputStudent">Student List</label>
             <select class="form-control" id="inputStudent" required [(ngModel)]="home.Student" name="inputStudent" #inputStudent="ngModel">
@@ -34,7 +39,7 @@
             Score must be numeric only.
         </div>
         <div *ngIf="inputScore.errors['required']">
-          Score is required.
+            Score is required.
         </div>
         <div *ngIf="inputScore.errors['customMin']">
             Score cannot be less than {{minNum}}.
@@ -47,7 +52,8 @@
 
       <div>
       <label>Grade: Calculated grade as per score</label>
-      </div> 
+      </div>
+      <br>
 
   
       <div class="container row">
@@ -59,12 +65,13 @@
   </form>
 </div>
     
+
       <div [hidden]="!submitted">
         <div class="container"> 
-        <div class="card" style="width: 50%">
+        <div class="card" style="width: 60%">
             <div class="card-header">Student Submit Printout</div>    
             <div class="card-body">
-              <p class="card-text">Student: {{home.Student}}, takes the course: {{home.Course}}, and has the grade: {{home.Grade}}</p>
+              <p class="card-text">Student: {{home.Student}}, takes the course: {{home.Course}}, and has the grade: {{home.Grade}}.</p>
               <p class="card-text">Course name in uppercase: {{home.Course | uppercase}}</p>
               <p class="card-text">Course name in lowercase: {{home.Course | lowercase}}</p>
             </div>
